@@ -284,7 +284,11 @@ Remember — this is a success message!
 <h1 id='powergen-api'>Powergen API</h1><h2 id='get-issues'>Get Issues</h2><pre class="highlight shell tab-shell"><code>curl
   -X GET <span class="s2">"http://api.metdesk.com/powergen/get/issues?model=ecop"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
@@ -316,10 +320,6 @@ Remember — this is a success message!
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<blockquote>
-<p>Make sure to replace <code>yourtoken</code> with your API key.</p>
-</blockquote>
-
 <p>This endpoint retrieves all available issues for a specific model.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://api.metdesk.com/powergen/get/issues?model=ecop</code></p>
