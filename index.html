@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,6 +212,7 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -263,40 +264,41 @@ You must replace <code>yourtoken</code> with your personal API key.
 <h1 id='powergen-api'>Powergen API</h1><h2 id='get-issues'>Get Issues</h2><pre class="highlight shell tab-shell"><code>curl
   -X GET <span class="se">\ </span><span class="s2">"/powergen/get/issues?model=ecop"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
-</code></pre><pre class="highlight plaintext"><code>function reqListener () {
-  console.log(this.responseText);
-}
-
-var req = new XMLHttpRequest();
-req.addEventListener("load", reqListener);
-req.open("GET", "/powergen/get/issues?model=ecop");
-req.setRequestHeader("Authenticate", "yourtoken");
-req.send();
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"load"</span><span class="p">,</span> <span class="nx">reqListener</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"/powergen/get/issues?model=ecop"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authenticate"</span><span class="p">,</span> <span class="s2">"yourtoken"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>yourtoken</code> with your API key.
-The above command returns JSON structured like this:</p>
+<p>The above command returns JSON structured like this:
+<code>json
+{
+    &quot;request&quot;: {
+        &quot;endpoint&quot;: &quot;metdesk/powergen/issues&quot;,
+        &quot;version&quot;: 1,
+        &quot;created&quot;: &quot;2018-09-20T12:57:29Z&quot;,
+        &quot;status&quot;: &quot;OK&quot;,
+        &quot;message&quot;: &quot;&quot;,
+        &quot;parameters&quot;: {
+            &quot;model&quot;: &quot;ecop&quot;
+        }
+    },
+    &quot;data&quot;: [
+        &quot;2018-08-21T00:00:00Z&quot;,
+        &quot;2018-08-21T12:00:00Z&quot;,
+        &quot;2018-08-22T00:00:00Z&quot;,
+        &quot;2018-08-22T12:00:00Z&quot;,
+        &quot;2018-08-23T00:00:00Z&quot;
+    ]
+}
+</code>
+Make sure to replace <code>yourtoken</code> with your API key.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"metdesk/powergen/issues"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-20T12:57:29Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ecop"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"2018-08-21T00:00:00Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"2018-08-21T12:00:00Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"2018-08-22T00:00:00Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"2018-08-22T12:00:00Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"2018-08-23T00:00:00Z"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+
 <p>This endpoint retrieves all available issues for a specific model.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://api.metdesk.com/powergen/get/issues?model=ecop</code></p>
@@ -415,6 +417,7 @@ Notice goes here
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
