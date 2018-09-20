@@ -1,11 +1,6 @@
 # Errors
 
-<aside class="notice">
-Notice goes here
-</aside>
-
 The MetDesk API uses the following error codes:
-
 
 Error Code | Meaning
 ---------- | -------
