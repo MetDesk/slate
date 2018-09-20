@@ -3,13 +3,9 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='http://www.metdesk.com'>Powered by MetDesk</a>
 
 includes:
   - errors
@@ -19,221 +15,126 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the MetDesk API Docs!
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
-> To authorize, use this code:
+MetDesk uses API keys to allow access to the API. You can request access from your sales representative.
 
-```ruby
-require 'kittn'
+MetDesk expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: yourtoken`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>yourtoken</code> with your personal API key.
 </aside>
 
-# Kittens
+# Powergen API
 
-## Get All Kittens
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get Issues
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl
+  -X GET \ "/power/get/issues?model=ecop"
+  -H "Authorization: yourtoken"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+    "request": {
+        "endpoint": "metdesk/powergen/issues",
+        "version": 1,
+        "created": "2018-09-20T12:57:29Z",
+        "status": "OK",
+        "message": "",
+        "parameters": {
+            "model": "ecop"
+        }
+    },
+    "data": [
+        "2018-08-21T00:00:00Z",
+        "2018-08-21T12:00:00Z",
+        "2018-08-22T00:00:00Z",
+        "2018-08-22T12:00:00Z",
+        "2018-08-23T00:00:00Z"
+    ]
+}
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all available issues for a specific model.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET http://api.metdesk.com/powergen/get/issues?model=ecop`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Required | Description
+--------- | -------- | -----------
+model | true | Specify the model to return issues for.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — this is a success message!
 </aside>
 
-## Get a Specific Kitten
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get Dtgs
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl
+  -X GET \ "/power/get/dtgs?model=ecop&issue=2018-09-10T00:00:00Z"
+  -H "Authorization: yourtoken"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "request": {
+        "endpoint": "metdesk/powergen/dtgs",
+        "version": 1,
+        "created": "2018-09-20T13:27:17Z",
+        "status": "OK",
+        "message": "",
+        "parameters": {
+            "model": "ecop",
+            "issue": "2018-09-10T00:00:00Z"
+        }
+    },
+    "data": [
+        "2018-09-10T00:00:00Z",
+        "2018-09-10T01:00:00Z",
+        "2018-09-10T02:00:00Z",
+        "2018-09-10T03:00:00Z",
+        "2018-09-10T04:00:00Z"
+    ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves all available dtgs for a specific model / issue.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET http://api.metdesk.com/powergen/get/dtgs?model=ecop&issue=2018-09-10T00:00:00Z`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Required | Description
+--------- | -------- | -----------
+model | true | Specify the model to return dtgs for.
+issue | true | Specify the issue to return dtgs for.
 
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+<aside class="sucwarningcess">
+Remember — this is a warning message!
+</aside>
