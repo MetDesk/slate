@@ -231,10 +231,7 @@
                     <a href="#get-issues" class="toc-h2 toc-link" data-title="Get Issues">Get Issues</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#get-dtgs" class="toc-h2 toc-link" data-title="Get Dtgs">Get Dtgs</a>
                   </li>
               </ul>
           </li>
@@ -290,7 +287,7 @@ You must replace <code>yourtoken</code> with your personal API key.
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all available issues.</p>
+<p>This endpoint retrieves all available issues for a specific model.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://api.metdesk.com/powergen/get/issues?model=ecop</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -309,66 +306,62 @@ You must replace <code>yourtoken</code> with your personal API key.
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — this is a success message!
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://api.metdesk.com/powergen/get/kittens/2"</span>
+<h2 id='get-dtgs'>Get Dtgs</h2><pre class="highlight shell tab-shell"><code>curl
+  -X GET <span class="se">\ </span><span class="s2">"/power/get/dtgs?model=ecop&amp;issue=2018-09-10T00:00:00Z"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"metdesk/powergen/dtgs"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-20T13:27:17Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ecop"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"issue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-10T00:00:00Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2018-09-10T00:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2018-09-10T01:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2018-09-10T02:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2018-09-10T03:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2018-09-10T04:00:00Z"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>This endpoint retrieves all available dtgs for a specific model / issue.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://api.metdesk.com/powergen/get/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>GET http://api.metdesk.com/powergen/get/dtgs?model=ecop&amp;issue=2018-09-10T00:00:00Z</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>model</td>
+<td>true</td>
+<td>Specify the model to return dtgs for.</td>
+</tr>
+<tr>
+<td>issue</td>
+<td>true</td>
+<td>Specify the issue to return dtgs for.</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://api.metdesk.com/powergen/get/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: yourtoken"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://api.metdesk.com/powergen/get/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
+
+<aside class="sucwarningcess">
+Remember — this is a warning message!
+</aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
