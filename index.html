@@ -228,7 +228,7 @@
             <a href="#powergen-api" class="toc-h1 toc-link" data-title="Powergen API">Powergen API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-issues" class="toc-h2 toc-link" data-title="Get All Issues">Get All Issues</a>
+                    <a href="#get-issues" class="toc-h2 toc-link" data-title="Get Issues">Get Issues</a>
                   </li>
                   <li>
                     <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
@@ -263,8 +263,8 @@
 <aside class="notice">
 You must replace <code>yourtoken</code> with your personal API key.
 </aside>
-<h1 id='powergen-api'>Powergen API</h1><h2 id='get-all-issues'>Get All Issues</h2><pre class="highlight shell tab-shell"><code>curl
-  -X GET <span class="se">\ </span><span class="s2">"/power/get/issues"</span>
+<h1 id='powergen-api'>Powergen API</h1><h2 id='get-issues'>Get Issues</h2><pre class="highlight shell tab-shell"><code>curl
+  -X GET <span class="se">\ </span><span class="s2">"/power/get/issues?model=ecop"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
 </code></pre>
 <blockquote>
@@ -292,24 +292,19 @@ You must replace <code>yourtoken</code> with your personal API key.
 </span></code></pre>
 <p>This endpoint retrieves all available issues.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://api.metdesk.com/powergen/get/kittens</code></p>
+<p><code>GET http://api.metdesk.com/powergen/get/issues?model=ecop</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
+<td>model</td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>Specify the model to return issues for.</td>
 </tr>
 </tbody></table>
 
