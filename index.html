@@ -261,11 +261,21 @@
 You must replace <code>yourtoken</code> with your personal API key.
 </aside>
 <h1 id='powergen-api'>Powergen API</h1><h2 id='get-issues'>Get Issues</h2><pre class="highlight shell tab-shell"><code>curl
-  -X GET <span class="se">\ </span><span class="s2">"/power/get/issues?model=ecop"</span>
+  -X GET <span class="se">\ </span><span class="s2">"/powergen/get/issues?model=ecop"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
+</code></pre><pre class="highlight plaintext"><code>function reqListener () {
+  console.log(this.responseText);
+}
+
+var req = new XMLHttpRequest();
+req.addEventListener("load", reqListener);
+req.open("GET", "/powergen/get/issues?model=ecop");
+req.setRequestHeader("Authenticate", "yourtoken");
+req.send();
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Make sure to replace <code>yourtoken</code> with your API key.
+The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -309,7 +319,7 @@ You must replace <code>yourtoken</code> with your personal API key.
 Remember — this is a success message!
 </aside>
 <h2 id='get-dtgs'>Get Dtgs</h2><pre class="highlight shell tab-shell"><code>curl
-  -X GET <span class="se">\ </span><span class="s2">"/power/get/dtgs?model=ecop&amp;issue=2018-09-10T00:00:00Z"</span>
+  -X GET <span class="se">\ </span><span class="s2">"/powergen/get/dtgs?model=ecop&amp;issue=2018-09-10T00:00:00Z"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
 </code></pre>
 <blockquote>
@@ -377,39 +387,19 @@ Notice goes here
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Bad Request -- Your request is invalid, more info in the response body.</td>
 </tr>
 <tr>
 <td>401</td>
 <td>Unauthorized -- Your API key is wrong.</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>Not Found -- The specified endpoint could not be found.</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You&#39;re requesting too many data.</td>
 </tr>
 <tr>
 <td>500</td>
