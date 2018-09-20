@@ -273,22 +273,14 @@
 <aside class="notice">
 You must replace <code>yourtoken</code> with your personal API key.
 </aside>
-
-<aside class="warning">
-Remember — this is a warning message!
-</aside>
-
-<aside class="success">
-Remember — this is a success message!
-</aside>
-<h1 id='powergen-api'>Powergen API</h1><h2 id='get-issues'>Get Issues</h2><pre class="highlight shell tab-shell"><code>curl
-  -X GET <span class="s2">"http://api.metdesk.com/powergen/get/issues?model=ecop"</span>
-  -H <span class="s2">"Authorization: yourtoken"</span>
-</code></pre>
+<h1 id='powergen-api'>Powergen API</h1><h2 id='get-issues'>Get Issues</h2>
 <blockquote>
 <p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET <span class="s2">"http://api.metdesk.com/powergen/get/issues?model=ecop"</span>
+  -H <span class="s2">"Authorization: yourtoken"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
@@ -337,7 +329,11 @@ Remember — this is a success message!
 <td>Specify the model to return issues for.</td>
 </tr>
 </tbody></table>
-<h2 id='get-dtgs'>Get Dtgs</h2><pre class="highlight shell tab-shell"><code>curl
+<h2 id='get-dtgs'>Get Dtgs</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
   -X GET <span class="s2">"http://api.metdesk.com/powergen/get/dtgs?model=ecop&amp;issue=2018-09-10T00:00:00Z"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
@@ -396,7 +392,11 @@ Remember — this is a success message!
 <td>Specify the issue to return dtgs for.</td>
 </tr>
 </tbody></table>
-<h2 id='get-forecasts'>Get Forecasts</h2><pre class="highlight shell tab-shell"><code>curl
+<h2 id='get-forecasts'>Get Forecasts</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
   -X GET <span class="s2">"http://api.metdesk.com/powergen/get/forecasts?model=ecop&amp;issue=2018-09-14T00:00:00Z&amp;element=solar&amp;location=GB&amp;location_type=country"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
@@ -490,7 +490,11 @@ Remember — this is a success message!
 <td>false, true</td>
 </tr>
 </tbody></table>
-<h2 id='get-observations'>Get Observations</h2><pre class="highlight shell tab-shell"><code>curl
+<h2 id='get-observations'>Get Observations</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
   -X GET <span class="s2">"http://api.metdesk.com/powergen/get/observations?element=wind&amp;location=DE"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
@@ -571,7 +575,11 @@ Remember — this is a success message!
 <td>hires, peak, offpeak, base</td>
 </tr>
 </tbody></table>
-<h2 id='get-climate'>Get Climate</h2><pre class="highlight shell tab-shell"><code>curl
+<h2 id='get-climate'>Get Climate</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
   -X GET <span class="s2">"http://api.metdesk.com/powergen/get/climate?element=wind&amp;location=GB"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
@@ -649,7 +657,11 @@ Remember — this is a success message!
 <td>hires, peak, offpeak, base</td>
 </tr>
 </tbody></table>
-<h2 id='get-maxrecorded'>Get MaxRecorded</h2><pre class="highlight shell tab-shell"><code>curl
+<h2 id='get-maxrecorded'>Get MaxRecorded</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
   -X GET <span class="s2">"http://api.metdesk.com/powergen/get/maxrecorded?element=wind&amp;location=DE"</span>
   -H <span class="s2">"Authorization: yourtoken"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
