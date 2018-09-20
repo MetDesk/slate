@@ -249,6 +249,23 @@
               </ul>
           </li>
           <li>
+            <a href="#shell-api" class="toc-h1 toc-link" data-title="Shell API">Shell API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-locations" class="toc-h2 toc-link" data-title="Get Locations">Get Locations</a>
+                  </li>
+                  <li>
+                    <a href="#get-issues-2" class="toc-h2 toc-link" data-title="Get Issues">Get Issues</a>
+                  </li>
+                  <li>
+                    <a href="#get-dtgs-2" class="toc-h2 toc-link" data-title="Get Dtgs">Get Dtgs</a>
+                  </li>
+                  <li>
+                    <a href="#get-forecast" class="toc-h2 toc-link" data-title="Get Forecast">Get Forecast</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -389,7 +406,7 @@ You must replace <code>yourtoken</code> with your personal API key.
 <tr>
 <td>issue</td>
 <td>true</td>
-<td>2018-09-14T00:00:00Z</td>
+<td>2018-09-10T00:00:00Z</td>
 </tr>
 </tbody></table>
 <h2 id='get-forecasts'>Get Forecasts</h2>
@@ -538,7 +555,7 @@ You must replace <code>yourtoken</code> with your personal API key.
             </span><span class="s2">"dtg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-17T00:30:00Z"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">8843</span><span class="p">,</span><span class="w">
             </span><span class="s2">"pseudo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -620,7 +637,7 @@ You must replace <code>yourtoken</code> with your personal API key.
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"dtg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-17T01:00:00Z"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">4793.83</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -721,11 +738,272 @@ You must replace <code>yourtoken</code> with your personal API key.
 <td>country, tso, portfolio, site</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-Notice goes here
-</aside>
+<h1 id='shell-api'>Shell API</h1><h2 id='get-locations'>Get Locations</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET <span class="s2">"http://api.metdesk.com/shell/get/locations"</span>
+  -H <span class="s2">"Authorization: yourtoken"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"load"</span><span class="p">,</span> <span class="nx">reqListener</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"http://api.metdesk.com/shell/get/locations"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"yourtoken"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shell/model/locations"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-20T16:45:23Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First City"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00002"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Second City"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00003"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Third City"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all available locations.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET http://api.metdesk.com/shell/get/locations</code></p>
+<h2 id='get-issues-2'>Get Issues</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET <span class="s2">"http://api.metdesk.com/shell/get/issues?model=ecop&amp;element=tt"</span>
+  -H <span class="s2">"Authorization: yourtoken"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"load"</span><span class="p">,</span> <span class="nx">reqListener</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"http://api.metdesk.com/shell/get/issues?model=ecop&amp;element=tt"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"yourtoken"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shell/model/issues"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-20T16:48:29Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ecop"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"element"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tt"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2018-08-29T00:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2018-09-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2018-09-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all available issues for a specific model / element.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET http://api.metdesk.com/shell/get/issues?model=ecop&amp;element=tt</code></p>
+<h3 id='query-parameters-7'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model</td>
+<td>true</td>
+<td>ecop, eceps, gfsop, gfsens, magma</td>
+</tr>
+<tr>
+<td>element</td>
+<td>true</td>
+<td>tt</td>
+</tr>
+</tbody></table>
+<h2 id='get-dtgs-2'>Get Dtgs</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET <span class="s2">"http://api.metdesk.com/shell/get/dtgs?model=ecop&amp;issue=2018-09-14T00:00:00Z&amp;element=tt"</span>
+  -H <span class="s2">"Authorization: yourtoken"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"load"</span><span class="p">,</span> <span class="nx">reqListener</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"http://api.metdesk.com/shell/get/dtgs?model=ecop&amp;issue=2018-09-14T00:00:00Z&amp;element=tt"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"yourtoken"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shell/model/dtgs"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-20T16:51:06Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ecop"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"issue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-14T00:00:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"element"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tt"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2018-09-14T00:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2018-09-14T01:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2018-09-14T02:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all available dtgs for a specific model / issue / element.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET http://api.metdesk.com/shell/get/dtgs?model=ecop&amp;issue=2018-09-14T00:00:00Z&amp;element=tt</code></p>
+<h3 id='query-parameters-8'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model</td>
+<td>true</td>
+<td>ecop, eceps, gfsop, gfsens, magma</td>
+</tr>
+<tr>
+<td>issue</td>
+<td>true</td>
+<td>2018-09-14T00:00:00Z</td>
+</tr>
+<tr>
+<td>element</td>
+<td>true</td>
+<td>tt</td>
+</tr>
+</tbody></table>
+<h2 id='get-forecast'>Get Forecast</h2>
+<blockquote>
+<p>Make sure to replace <code>yourtoken</code> with your API key in the code below.</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET <span class="s2">"http://api.metdesk.com/shell/get/forecast?model=gfsop&amp;issue=2018-09-14T00:00:00Z&amp;element=tt&amp;dtg=2018-09-14T00:00:00Z"</span>
+  -H <span class="s2">"Authorization: yourtoken"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">reqListener</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"load"</span><span class="p">,</span> <span class="nx">reqListener</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"http://api.metdesk.com/shell/get/forecast?model=gfsop&amp;issue=2018-09-14T00:00:00Z&amp;element=tt&amp;dtg=2018-09-14T00:00:00Z"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">,</span> <span class="s2">"yourtoken"</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shell/model/forecast"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-20T16:52:54Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gfsop"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"issue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-14T00:00:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"element"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tt"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dtg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-14T00:00:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"member"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.6</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00002"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"member"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all available dtgs for a specific model / issue / element.</p>
 
+<aside class="notice">
+If you don't specify a location it will return data for all locations.
+</aside>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET http://api.metdesk.com/shell/get/forecast?model=gfsop&amp;issue=2018-09-14T00:00:00Z&amp;element=tt&amp;dtg=2018-09-14T00:00:00Z</code></p>
+<h3 id='query-parameters-9'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model</td>
+<td>true</td>
+<td>ecop, eceps, gfsop, gfsens, magma</td>
+</tr>
+<tr>
+<td>issue</td>
+<td>true</td>
+<td>2018-09-14T00:00:00Z</td>
+</tr>
+<tr>
+<td>element</td>
+<td>true</td>
+<td>tt</td>
+</tr>
+<tr>
+<td>dtg</td>
+<td>true</td>
+<td>2018-09-14T00:00:00Z</td>
+</tr>
+<tr>
+<td>location</td>
+<td>false</td>
+<td>shell location id</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
 <p>The MetDesk API uses the following error codes:</p>
 
 <table><thead>
